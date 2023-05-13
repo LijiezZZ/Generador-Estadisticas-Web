@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "generador-estadisticas-web": {
+      "hosting": {
+        "GeneradorEstadisticasWeb": [
+          "generador-estadisticas-web"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "generador-estadisticas-web"
+  }
+}
