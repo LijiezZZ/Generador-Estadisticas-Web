@@ -3,7 +3,7 @@ import { Auth, getAuth, signInWithEmailAndPassword, createUserWithEmailAndPasswo
 //import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Firestore, collection, addDoc, query, where, collectionData, getDocs, doc, orderBy, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { map, NextObserver, Observable, of as observableOf} from 'rxjs';
+import { map, NextObserver, Observable, of as observableOf, take} from 'rxjs';
 import { User } from '../_models/user.model';
 import { Chart as Chartjs } from 'chart.js/auto';
 import { Chart } from '../_models/chart.model'
@@ -20,11 +20,16 @@ export class UserService {
 
     constructor(private auth: Auth, private firestore: Firestore, private router: Router) {
         this.authState$.subscribe((aUser: Usuario | null) => {
+            this.userData = aUser;
             if (aUser) {
-                this.userData = aUser;
-                console.log("hay usuario", aUser);
+                console.log("hay usuario", aUser["email"]);
                 localStorage.setItem("user", JSON.stringify(this.userData));
                 JSON.parse(localStorage.getItem("user")!);
+                this.getUserFromDB(this.userData["email"]).pipe(take(1),).subscribe( user => {
+                    console.log(user);
+                    localStorage.setItem("userInfo", JSON.stringify({"uid":user[0]["uid"], "username":user[0]["username"], "charts":user[0]["charts"], "type":user[0]["type"], "active":user[0]["active"]}));
+                    JSON.parse(localStorage.getItem("userInfo")!);
+                })
             }
             else {
                 console.log("no hay usuario", aUser);
@@ -40,18 +45,7 @@ export class UserService {
     //authState$: Observable<firebase.default.User | null> = this.afAuth.authState;
 
     login(email: string, password: string) {
-        return signInWithEmailAndPassword(this.auth, email, password).then((response) => {
-            this.getUserFromDB(email).subscribe((user) => {
-                if (localStorage.getItem("user") != "null") {
-                  localStorage.setItem("userInfo", JSON.stringify({"uid":user[0]["uid"], "username":user[0]["username"], "charts":user[0]["charts"], "type":user[0]["type"], "active":user[0]["active"]}));
-                  JSON.parse(localStorage.getItem("userInfo")!);
-                }
-                else {
-                  localStorage.setItem("userInfo", "null");
-                  JSON.parse(localStorage.getItem("userInfo")!);
-                }
-              })
-        });
+        return signInWithEmailAndPassword(this.auth, email, password);
     }
 
     register(username: string, email: string, password: string) {
@@ -60,12 +54,13 @@ export class UserService {
 
 
     logout() {
-        signOut(this.auth).then(() => {
-            this.getUserFromDB("null").subscribe((user) => {
+        return signOut(this.auth).then((response) => {
+            this.getUserFromDB("").subscribe((user) => {
+                console.log("logout", user);
                 localStorage.setItem("userInfo", "null");
                 JSON.parse(localStorage.getItem("userInfo")!);
-              })
-            this.router.navigate(["/"]);
+                this.router.navigate(["/"]);
+            }).unsubscribe();
         })
     }
 
