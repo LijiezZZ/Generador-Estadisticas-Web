@@ -1,0 +1,119 @@
+
+<mat-toolbar color="primary">
+    <span class="title">Generador Estadísticas Web</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-card class="center" *ngIf="userIsActive()">
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <h1>Empezar a crear!</h1>
+        <div class="btn-container">
+            <button mat-raised-button color="primary" [routerLink]="['/chart']" routerLinkActive="router-link-active">Rellenar formulario</button>
+        </div>
+        <div class="btn-container">
+            <button mat-raised-button color="primary">+ Importar fichero</button>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="center" *ngIf="!userIsActive()">
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <h1>Usuario bloqueado</h1>
+        <mat-error>Por favor ponte en contacto con el administrador de esta aplicación vía email:</mat-error>
+        <p>lijieyin00@gmail.com</p>
+    </mat-card-content>
+</mat-card>
+
+<div class="examples" >
+    <h1>Qué podrías crear con esta aplicación?</h1>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de barras verticales</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="bar"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de barras horizontales</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="h_bar"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de barras apiladas</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="s_bar"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de líneas</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="line"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de líneas escalonadas</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="s_line"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de pastel</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="pie"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de donut</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="doughnut"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de área</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="area"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="chart-card">
+        <mat-card>
+            <mat-card-content>
+                <h1>Gráfico de radar</h1>
+                <div class="charts-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+                    <canvas id="radar"></canvas>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

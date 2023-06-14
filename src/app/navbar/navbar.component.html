@@ -1,3 +1,32 @@
-<mat-toolbar color="primary">
-    <mat-icon>home</mat-icon>
+
+<mat-toolbar class="navbar" color="primary" *ngIf="!userIsLogged()">
+    <mat-toolbar-row >
+        <button mat-flat-button color="primary" [routerLink]="['/']" routerLinkActive="router-link-active">
+        <mat-icon>home</mat-icon>Inicio
+        </button>
+        <span class="spacer"></span>
+      <div> 
+        <button mat-raised-button color="primary" [routerLink]="['/login']" routerLinkActive="router-link-active">Iniciar sessión</button>
+        <button mat-raised-button color="accent" [routerLink]="['/register']" routerLinkActive="router-link-active">Registrar</button>
+      </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-toolbar class="navbar" color="primary" *ngIf="userIsLogged()">
+    <mat-toolbar-row >
+        <button mat-flat-button color="primary" [routerLink]="['/']" routerLinkActive="router-link-active">
+        <mat-icon>home</mat-icon>Inicio
+        </button>
+        <span class="spacer"></span>
+      <div> 
+        <button mat-raised-button color="primary" [routerLink]="['/admin']" routerLinkActive="router-link-active" [hidden]="!isAdmin()">Admin panel</button>
+        <button mat-raised-button color="primary" [routerLink]="['/subscription']" routerLinkActive="router-link-active" [hidden]="isAdmin() || isPremium()"><mat-icon>verified</mat-icon>Ser Premium!</button>
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Hola {{getUsername()}}!</button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item [routerLink]="['/profile']" routerLinkActive="router-link-active">Mi perfil</button>
+          <button mat-menu-item [routerLink]="['/historial']" routerLinkActive="router-link-active">Mi historial</button>
+        </mat-menu>
+        <button mat-raised-button color="accent" (click)="logout()">Cerrar sesión</button>
+      </div>
+    </mat-toolbar-row>
 </mat-toolbar>

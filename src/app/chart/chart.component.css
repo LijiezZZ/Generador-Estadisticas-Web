@@ -1,0 +1,45 @@
+
+mat-card {
+    text-align: center;
+}
+
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+}
+
+.example-form-fields {
+    display: flex;
+    align-items: flex-start;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+mat-form-field button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.data {
+    width: 100%;
+    margin: auto;
+}
+
+.title {
+    font-size: 25px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+button {
+    margin-right: 5px;
+}
+
+.leyenda {
+    position: relative;
+    padding-left: 170px;
+}

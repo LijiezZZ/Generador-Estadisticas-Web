@@ -1,0 +1,63 @@
+
+<mat-toolbar color="primary">
+    <span class="title">Mi perfil</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>
+        {{userInfo.username}}
+      </mat-card-title>
+      <mat-card-subtitle>uid: {{userInfo.uid}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item>
+                <span class="titulo" matListItemTitle>Email</span>
+                <span matListItemLine>{{user.email}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="titulo" matListItemTitle>Estado</span>
+                <span matListItemLine>{{userInfo.active? "Activo" : "Bloqueado"}}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="titulo" matListItemTitle>Tipo</span>
+                <span matListItemLine>{{userInfo.type == "basic"? "Básico" : "Premium" }}</span>
+            </mat-list-item>
+            <mat-list-item>
+                <span class="titulo" matListItemTitle>Gráficos</span>
+                <span matListItemLine>{{userInfo.charts.length}}</span>
+            </mat-list-item>
+        </mat-list>
+    </mat-card-content>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center" *ngIf="editing">
+        <form [formGroup]="formEdit" class="example-form" (ngSubmit)="onSubmit()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput formControlName="usernameControl" name="username" placeholder="Username">
+                <mat-error *ngIf="myError('usernameControl', 'minlength') || myError('usernameControl', 'maxlength')">El username tiene que ser entre 6 y 20 carácteres!</mat-error>
+                <mat-error *ngIf="myError('usernameControl', 'required')">El username no puede estar vacío!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="emailControl" placeholder="ejemplo@gmail.com">
+                <mat-error *ngIf="myError('emailControl', 'email')">El email introducido es inválido!</mat-error>
+                <mat-error *ngIf="myError('emailControl', 'required')">El email no puede estar vacío!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password nuevo</mat-label>
+                <input type="password" matInput formControlName="passwControl" placeholder="XXXXXXXX">
+                <mat-error *ngIf="myError('passwControl', 'minlength') || myError('passwControl', 'maxlength')">La contraseña tiene que ser entre 6 y 8 carácteres!</mat-error>
+                <mat-error *ngIf="myError('passwControl', 'required')">La contraseña no puede estar vacía!</mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="showError">Este email ya está registrado!</mat-error>
+            <button mat-raised-button color="primary" type="submit" [disabled]="formEdit.invalid">Guardar</button>
+            <button mat-raised-button color="primary" (click)="edit()">Cancelar</button>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="edit()" [hidden]="editing">Editar</button>
+    </mat-card-actions>
+</mat-card>

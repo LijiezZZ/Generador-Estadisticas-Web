@@ -1,0 +1,166 @@
+
+<mat-toolbar color="primary">
+    <span class="title">Creación de gráfico</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <h1>Configuración de gráfico</h1>
+
+        <div class="example-container">
+            <form class="example-form">
+                <div class="example-form-fields">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Tipo de gráfico</mat-label>
+                        <mat-select [(value)]="chartType">
+                            <mat-option value="bar">Barras verticales<mat-icon>bar_chart</mat-icon></mat-option>
+                            <mat-option value="h_bar" [disabled]="isPremium">Barras horizontales<mat-icon>bar_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
+                            <mat-option value="s_bar" [disabled]="isPremium">Barras apiladas<mat-icon>bar_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
+                            <mat-option value="line">Líneas<mat-icon>show_chart</mat-icon></mat-option>
+                            <mat-option value="s_line" [disabled]="isPremium">Líneas escalonadas<mat-icon>show_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
+                            <mat-option value="pie">Pastel<mat-icon>pie_chart</mat-icon></mat-option>
+                            <mat-option value="doughnut" [disabled]="isPremium">Donut<mat-icon>pie_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
+                            <mat-option value="area">Área<mat-icon>area_chart</mat-icon></mat-option>
+                            <mat-option value="radar" [disabled]="isPremium">Radar<mat-icon>area_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Altura del gráfico</mat-label>
+                        <mat-select [(value)]="height">
+                            <mat-option value="400px">400 píxeles</mat-option>
+                            <mat-option value="500px">500 píxeles</mat-option>
+                            <mat-option value="600px">600 píxeles</mat-option>
+                            <mat-option value="700px">700 píxeles</mat-option>
+                            <mat-option value="800px">800 píxeles</mat-option>
+                            <mat-option value="900px">900 píxeles</mat-option>
+                            <mat-option value="1000px">1000 píxeles</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Ancho del gráfico</mat-label>
+                        <mat-select [(value)]="width">
+                            <mat-option value="400px">400 píxeles</mat-option>
+                            <mat-option value="500px">500 píxeles</mat-option>
+                            <mat-option value="600px">600 píxeles</mat-option>
+                            <mat-option value="700px">700 píxeles</mat-option>
+                            <mat-option value="800px">800 píxeles</mat-option>
+                            <mat-option value="900px">900 píxeles</mat-option>
+                            <mat-option value="1000px">1000 píxeles</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Color de fondo</mat-label>
+                        <mat-select [(value)]="bgColor">
+                            <mat-option value="transparent" style="background-color:white">Transparente</mat-option>
+                            <mat-option value="white" style="background-color:white">Blanco</mat-option>
+                            <mat-option value="lightblue" style="background-color:lightblue">Azul</mat-option>
+                            <mat-option value="lightgreen" style="background-color:lightgreen">Verde</mat-option>
+                            <mat-option value="lightcoral" style="background-color:lightcoral">Rojo</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="example-form-fields">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Título del gráfico</mat-label>
+                        <input type="text" matInput name="title" [(ngModel)]= "title">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Subtítulo</mat-label>
+                        <input type="text" matInput name="subtitle" [(ngModel)]="subtitle">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Título eje X</mat-label>
+                        <input type="text" matInput name="titleX" [(ngModel)]="titleX">
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Título eje Y</mat-label>
+                        <input type="text" matInput name="titleY" [(ngModel)]="titleY">
+                    </mat-form-field>
+                </div>
+
+                <div class="example-form-fields">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Fuente título: estilo</mat-label>
+                        <mat-select [(value)]="titleFontStyle">
+                            <mat-option value="normal">Normal</mat-option>
+                            <mat-option value="italic">Itálica</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Fuente título: peso</mat-label>
+                        <mat-select [(value)]="titleFontWeight">
+                            <mat-option value="normal">Normal</mat-option>
+                            <mat-option value="bold">Negrita</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Fuente Etiquetas: estilo</mat-label>
+                        <mat-select [(value)]="labelFontStyle">
+                            <mat-option value="normal">Normal</mat-option>
+                            <mat-option value="italic">Itálica</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Fuente Etiquetas: peso</mat-label>
+                        <mat-select [(value)]="labelFontWeight">
+                            <mat-option value="normal">Normal</mat-option>
+                            <mat-option value="bold">Negrita</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div class="example-form-fields">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Descripción</mat-label>
+                        <textarea matInput name="description" [(ngModel)]="description"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <h1>Datos de gráfico</h1>
+        <p>*Debes de introducir los datos en columnas!</p>
+
+        <div class="example-container">
+            <form [formGroup]="formChart" class="example-form">
+                <div class="data">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Datos eje X</mat-label>
+                        <textarea matInput rows="10" formControlName="x"></textarea>
+                    </mat-form-field>
+                    
+                    <mat-form-field appearance="outline" *ngFor="let textarea of textareaList; let textarea_index=index">
+                        <button mat-icon-button color="primary" (click)="removeTextarea(textarea_index)" [hidden]="textarea_index != textareaList.length-1 || textarea_index == 0"><mat-icon>remove</mat-icon></button>
+                        <mat-label>Datos eje Y</mat-label>
+                        <textarea matInput rows="10" [formControlName]="textarea"></textarea>
+                    </mat-form-field>
+                    <button mat-icon-button color="primary" (click)="addTextarea()" [hidden]="textareaList.length == 5"><mat-icon>add</mat-icon></button>
+                    
+                    <div class="leyenda">
+                        <mat-form-field appearance="outline" *ngFor="let leyenda of leyendaList; let leyenda_index=index">
+                            <mat-label>Leyenda</mat-label>
+                            <input type="text" matInput [formControlName]="leyenda">
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="formChart.invalid || !dataIsCorrect()" (click)="onSubmit()">Crear gráfico</button>
+                <button mat-raised-button color="primary" [routerLink]="['/']" routerLinkActive="router-link-active">Volver al inicio</button>
+            </form>
+        </div>
+    </mat-card-content>
+</mat-card>
+

@@ -1,0 +1,34 @@
+
+<mat-toolbar color="primary">
+    <span class="title">Registrar</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <h1>Registrar</h1>
+        <form [formGroup]="formRegister" class="example-form" (ngSubmit)="onSubmit()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput formControlName="usernameControl" name="username" placeholder="Username">
+                <mat-error *ngIf="myError('usernameControl', 'minlength') || myError('usernameControl', 'maxlength')">El username tiene que ser entre 6 y 20 carácteres!</mat-error>
+                <mat-error *ngIf="myError('usernameControl', 'required')">El username no puede estar vacío!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="emailControl" placeholder="ejemplo@gmail.com">
+                <mat-error *ngIf="myError('emailControl', 'email')">El email introducido es inválido!</mat-error>
+                <mat-error *ngIf="myError('emailControl', 'required')">El email no puede estar vacío!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="passwControl" placeholder="XXXXXXXX">
+                <mat-error *ngIf="myError('passwControl', 'minlength') || myError('passwControl', 'maxlength')">La contraseña tiene que ser entre 6 y 8 carácteres!</mat-error>
+                <mat-error *ngIf="myError('passwControl', 'required')">La contraseña no puede estar vacía!</mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="showError">Este email ya está registrado!</mat-error>
+            <button mat-raised-button color="primary" type="submit" [disabled]="formRegister.invalid">Registrar</button>
+            <button class="btn" mat-raised-button color="primary" [routerLink]="['/login']" routerLinkActive="router-link-active">Iniciar sesión</button>
+        </form>
+    </mat-card-content>
+</mat-card>

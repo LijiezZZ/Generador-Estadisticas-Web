@@ -1,0 +1,36 @@
+
+mat-card {
+    margin: 2em auto;
+    width: 600px;
+}
+
+.title {
+    font-size: 25px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.example-card {
+    max-width: 400px;
+    margin: 2em auto;
+}
+  
+.example-header-image {
+    background-image: url(src/assets/avatar.png);
+    background-size: cover;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+.titulo {
+    font-weight: bold;
+}
+
+button {
+    margin: 0 auto;
+    width: 50%;
+}

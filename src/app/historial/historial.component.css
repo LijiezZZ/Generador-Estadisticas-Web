@@ -1,0 +1,35 @@
+
+.card-container {
+    width: 1230px;
+    margin: 2em auto;
+}
+
+.card-center {
+    width: 410px;
+    margin: 0 auto;
+}
+
+.example-card {
+    float: left;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    width: 400px ;
+}
+
+.title {
+    font-size: 25px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+button {
+    margin-right: 5px;
+}
+  
+.chips-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2em;
+}

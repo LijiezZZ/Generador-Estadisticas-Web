@@ -1,0 +1,30 @@
+
+<mat-toolbar color="primary">
+  <span class="title">Mi historial</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+<div class="chips-container">
+  <mat-chip-listbox>
+    <mat-chip-option #op1 color="primary" selected value="desc" (click)="chipSelected(op1.value)">Orden: descendente</mat-chip-option>
+    <mat-chip-option #op2 color="primary" value="asc" (click)="chipSelected(op2.value)">Ascendente</mat-chip-option>
+  </mat-chip-listbox>
+</div>
+<div class="chips-container" [hidden]="charts.length != 0? true : false"><h1>Mi historial está vacío!</h1></div>
+<div [ngClass]="charts.length == 1? 'card-center' : 'card-container'" *ngFor="let chart of charts; let i = index">
+    <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>{{chart["title"] != ""? chart["title"] : "Sin título"}}</mat-card-title>
+          <mat-card-subtitle>{{chart["subtitle"] != ""? chart["subtitle"] : "Sin subtítulo"}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{chart["description"] != ""? chart["description"] : "Sin descripción"}}</p>
+          <p>Fecha de creación {{chart["date"]}}</p>
+          <p></p>
+          <mat-divider></mat-divider>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" (click)="visualizeChart(i)">Visualizar</button>
+          <button mat-stroked-button color="warn" (click)="deleteChart(i)">Eliminar</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

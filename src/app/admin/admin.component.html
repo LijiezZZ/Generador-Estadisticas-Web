@@ -1,0 +1,71 @@
+
+<mat-toolbar color="primary">
+    <span class="title">Administrador</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<div class="usersTable mat-elevation-z8">
+    <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ej. username" #input>
+    </mat-form-field>
+
+    <mat-table [dataSource]="dataSource" matSort>
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="uid">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> UID </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.uid}} </mat-cell>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="username">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="password">
+          <mat-header-cell *matHeaderCellDef> Password </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.password}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="type">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.type == "basic"? "Básico" : "Premium"}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="active">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Estado </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.active? "Activo" : "Bloqueado"}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="charts">
+            <mat-header-cell *matHeaderCellDef> Gráficos </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.charts? element.charts.length : 0}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-raised-button color="primary" (click)="changeUserState(element.uid, element.username, element.active)">{{element.active? "Bloquear" : "Activar"}}</button>
+                <button mat-raised-button color="primary" (click)="changeUserType(element.uid, element.username, element.type)">Cambiar tipo</button>
+                <button mat-raised-button color="primary" (click)="getUserHistorial(element.uid, element.charts)">Historial</button>
+                <button mat-raised-button color="warn" (click)="deleteUser(element.uid, element.username)">Eliminar</button>
+            </mat-cell>
+        </ng-container>
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>

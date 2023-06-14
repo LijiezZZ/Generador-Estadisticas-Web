@@ -1,0 +1,28 @@
+
+<mat-toolbar color="primary">
+    <span class="title">Iniciar sessión</span>
+    <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-card>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+        <h1>Iniciar sessión</h1>
+        <form [formGroup]="formLogin" class="example-form" (ngSubmit)="onSubmit()">
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input type="email" matInput formControlName="emailControl" placeholder="ejemplo@gmail.com">
+                <mat-error *ngIf="myError('emailControl', 'email')">El email introducido es inválido!</mat-error>
+                <mat-error *ngIf="myError('emailControl', 'required')">El email no puede estar vacío!</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput formControlName="passwControl" placeholder="XXXXXXXX">
+                <mat-error *ngIf="myError('passwControl', 'minlength') || myError('passwControl', 'maxlength')">La contraseña tiene que ser entre 6 y 8 carácteres!</mat-error>
+                <mat-error *ngIf="myError('passwControl', 'required')">La contraseña no puede estar vacía!</mat-error>
+            </mat-form-field>
+            <mat-error *ngIf="showError">El email o contraseña es incorrecto!</mat-error>
+            <button mat-raised-button color="primary" type="submit" [disabled]="formLogin.invalid">Entrar</button>
+            <button class="btn" mat-raised-button color="primary" [routerLink]="['/register']" routerLinkActive="router-link-active">Regístrate!</button>
+        </form>
+    </mat-card-content>
+</mat-card>
