@@ -64,10 +64,8 @@ export class HistorialComponent implements OnInit{
       let userInfo = JSON.parse(localStorage.getItem("userInfo")!);
       if (confirm("Seguro de borrar este gráfico?")) {
         let position = userInfo["charts"].indexOf(this.charts[index]["chartid"]);
-        if (position != -1) {
-          userInfo["charts"].splice(position, 1);
-          localStorage.setItem("userInfo", JSON.stringify(userInfo));
-        }
+        userInfo["charts"].splice(position, 1);
+        localStorage.setItem("userInfo", JSON.stringify(userInfo));
         let userInfo2 = JSON.parse(localStorage.getItem("userInfo")!);
         this.userService.deleteChart(this.charts[index]["uid"], this.charts[index]["chartid"]);
         this.userService.updateUserFromDB(userInfo2["uid"], "charts", userInfo["charts"]);

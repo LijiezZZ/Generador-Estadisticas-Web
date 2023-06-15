@@ -139,20 +139,20 @@
                 <div class="data">
                     <mat-form-field appearance="outline">
                         <mat-label>Datos eje X</mat-label>
-                        <textarea matInput rows="10" formControlName="x"></textarea>
+                        <textarea matInput rows="10" formControlName="x" [readonly]="!editable"></textarea>
                     </mat-form-field>
                     
                     <mat-form-field appearance="outline" *ngFor="let textarea of textareaList; let textarea_index=index">
-                        <button mat-icon-button color="primary" (click)="removeTextarea(textarea_index)" [hidden]="textarea_index != textareaList.length-1 || textarea_index == 0"><mat-icon>remove</mat-icon></button>
+                        <button mat-icon-button color="primary" (click)="removeTextarea(textarea_index)" [hidden]="textarea_index != textareaList.length-1 || textarea_index == 0 || editable == false"><mat-icon>remove</mat-icon></button>
                         <mat-label>Datos eje Y</mat-label>
-                        <textarea matInput rows="10" [formControlName]="textarea"></textarea>
+                        <textarea matInput rows="10" [formControlName]="textarea" [readonly]="!editable">{{textarea}}</textarea>
                     </mat-form-field>
-                    <button mat-icon-button color="primary" (click)="addTextarea()" [hidden]="textareaList.length == 5"><mat-icon>add</mat-icon></button>
+                    <button mat-icon-button color="primary" (click)="addTextarea()" [hidden]="textareaList.length == 5 || editable == false"><mat-icon>add</mat-icon></button>
                     
                     <div class="leyenda">
                         <mat-form-field appearance="outline" *ngFor="let leyenda of leyendaList; let leyenda_index=index">
                             <mat-label>Leyenda</mat-label>
-                            <input type="text" matInput [formControlName]="leyenda">
+                            <input type="text" matInput [formControlName]="leyenda" [readonly]="!editable">
                         </mat-form-field>
                     </div>
                 </div>

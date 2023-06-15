@@ -11,7 +11,8 @@
             <button mat-raised-button color="primary" [routerLink]="['/chart']" routerLinkActive="router-link-active">Rellenar formulario</button>
         </div>
         <div class="btn-container">
-            <button mat-raised-button color="primary">+ Importar fichero</button>
+            <input type="file" #uploader (change)="handleUpload($event)" accept=".csv" [hidden]="true">
+            <button mat-raised-button color="primary" (click)="uploader.click()"><mat-icon>upload</mat-icon>Importar fichero .csv</button>
         </div>
     </mat-card-content>
 </mat-card>

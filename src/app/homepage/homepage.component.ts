@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Chart as Chartjs} from 'chart.js/auto';
+import { Papa } from 'ngx-papaparse';
 
 @Component({
   selector: 'app-homepage',
@@ -10,8 +11,9 @@ import { Chart as Chartjs} from 'chart.js/auto';
 })
 export class HomepageComponent implements OnInit{
 
-  
-  constructor(private userService: UserService, private router: Router) {
+  csvData!: any[];
+
+  constructor(private userService: UserService, private router: Router, private papa: Papa) {
   }
 
   examples = ["bar", "h_bar", "s_bar", "line", "s_line", "pie", "doughnut", "area", "radar"];
@@ -51,6 +53,24 @@ export class HomepageComponent implements OnInit{
       this.chartData["dataY"] = this.dataY[i];
       this.userService.createChart(this.examples[i], this.chartData);
     }
+  }
+
+  handleUpload($event: any) {
+    const fileList = $event.srcElement.files;
+    this.parseCsvFile(fileList[0]);
+  }
+
+  parseCsvFile(file: any) {
+    this.papa.parse(file, {
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: 'greedy',
+      worker: true,
+      complete: (result,file) => {
+        this.csvData = result.data;
+        this.router.navigate(["/chart"], {state: {data: this.csvData}});
+      }
+    });
   }
 
 /*   parseDataY() {

@@ -9,6 +9,10 @@
     margin-bottom: 10px;
 }
 
+button {
+    width: 60%;
+}
+
 .examples {
     max-width: 1230px;
     margin: 0 auto;

@@ -9,12 +9,12 @@
 
 .usersTable {
     margin: 2em auto;
-    max-width: 80%;
+    max-width: 95%;
 }
 
 
 .mat-column-username, .mat-column-email, .mat-column-password, .mat-column-type, .mat-column-active, .mat-column-charts {
-    flex: 0 0 10%;
+    flex: 0 0 8%;
 }
 
 .mat-mdc-form-field {
