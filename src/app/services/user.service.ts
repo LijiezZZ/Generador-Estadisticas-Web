@@ -54,14 +54,7 @@ export class UserService {
 
 
     logout() {
-        return signOut(this.auth).then((response) => {
-            this.getUserFromDB("").subscribe((user) => {
-                console.log("logout", user);
-                localStorage.setItem("userInfo", "null");
-                JSON.parse(localStorage.getItem("userInfo")!);
-                this.router.navigate(["/"]);
-            }).unsubscribe();
-        })
+        return signOut(this.auth);
     }
 
     updateEmail(uid: string, email: string) {

@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit{
 
   logout() {
     this.userService.logout();
+    this.router.navigate(["/"]);
   }
 
   isAdmin() {
