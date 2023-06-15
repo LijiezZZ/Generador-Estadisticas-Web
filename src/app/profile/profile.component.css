@@ -1,7 +1,7 @@
 
 mat-card {
     margin: 2em auto;
-    width: 600px;
+    max-width: 500px;
 }
 
 .title {

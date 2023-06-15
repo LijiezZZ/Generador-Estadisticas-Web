@@ -1,11 +1,11 @@
 
 .card-container {
-    width: 1230px;
+    max-width: 1230px;
     margin: 2em auto;
 }
 
 .card-center {
-    width: 410px;
+    max-width: 410px;
     margin: 0 auto;
 }
 

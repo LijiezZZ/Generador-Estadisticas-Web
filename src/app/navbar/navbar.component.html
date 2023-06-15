@@ -20,7 +20,7 @@
         <span class="spacer"></span>
       <div> 
         <button mat-raised-button color="primary" [routerLink]="['/admin']" routerLinkActive="router-link-active" [hidden]="!isAdmin()">Admin panel</button>
-        <button mat-raised-button color="primary" [routerLink]="['/subscription']" routerLinkActive="router-link-active" [hidden]="isAdmin() || isPremium()"><mat-icon>verified</mat-icon>Ser Premium!</button>
+        <button mat-raised-button color="primary" [routerLink]="['/subscription']" routerLinkActive="router-link-active" [hidden]="isAdmin() || isPremium()"><mat-icon>verified</mat-icon>Premium</button>
         <button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Hola {{getUsername()}}!</button>
         <mat-menu #menu="matMenu" xPosition="before">
           <button mat-menu-item [routerLink]="['/profile']" routerLinkActive="router-link-active">Mi perfil</button>

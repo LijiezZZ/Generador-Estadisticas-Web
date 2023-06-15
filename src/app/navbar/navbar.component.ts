@@ -26,6 +26,9 @@ export class NavbarComponent implements OnInit{
     return userInfo != null? userInfo.username : null;
   }
 
+  //fix navigation to homepage
+  //fix historial -> take(1), call getChart() after delete chart
+  //todo import file to create chart
   logout() {
     this.userService.logout();
     this.router.navigate(["/"]);

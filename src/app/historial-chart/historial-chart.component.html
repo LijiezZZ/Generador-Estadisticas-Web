@@ -3,7 +3,7 @@
     <span class="title">Gráfico resultado</span>
     <span class="spacer"></span>
 </mat-toolbar>
-<div class="chart-container" [ngStyle]="{'height': this.chartData['height'], 'width': this.chartData['width'] }">
+<div class="chart-container" [ngStyle]="{'max-height': this.chartData['height'], 'max-width': this.chartData['width'] }">
     <canvas  id="myChart"></canvas>
     <p>{{ this.chartData["description"] }}</p>
     <button mat-raised-button color="primary" (click)="saveAsPNG()">Descargar PNG</button>

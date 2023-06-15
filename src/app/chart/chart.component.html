@@ -15,8 +15,8 @@
                         <mat-label>Tipo de gráfico</mat-label>
                         <mat-select [(value)]="chartType">
                             <mat-option value="bar">Barras verticales<mat-icon>bar_chart</mat-icon></mat-option>
-                            <mat-option value="h_bar" [disabled]="isPremium">Barras horizontales<mat-icon>bar_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
-                            <mat-option value="s_bar" [disabled]="isPremium">Barras apiladas<mat-icon>bar_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
+                            <mat-option value="h_bar">Barras horizontales<mat-icon>bar_chart</mat-icon></mat-option>
+                            <mat-option value="s_bar">Barras apiladas<mat-icon>bar_chart</mat-icon></mat-option>
                             <mat-option value="line">Líneas<mat-icon>show_chart</mat-icon></mat-option>
                             <mat-option value="s_line" [disabled]="isPremium">Líneas escalonadas<mat-icon>show_chart</mat-icon><mat-icon>verified</mat-icon></mat-option>
                             <mat-option value="pie">Pastel<mat-icon>pie_chart</mat-icon></mat-option>
