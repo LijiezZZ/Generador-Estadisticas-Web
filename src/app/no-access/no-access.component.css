@@ -14,3 +14,11 @@ div {
     height: 100%;
     background-color: white;
 }
+
+.title {
+    font-size: 25px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

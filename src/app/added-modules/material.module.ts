@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const material = [
     MatToolbarModule,
@@ -33,6 +34,7 @@ const material = [
     MatSortModule,
     MatDialogModule,
     MatListModule,
+    MatTooltipModule,
 ];
 
 @NgModule({

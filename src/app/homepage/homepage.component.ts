@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Chart as Chartjs} from 'chart.js/auto';
 import { Papa } from 'ngx-papaparse';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-homepage',
@@ -66,7 +67,7 @@ export class HomepageComponent implements OnInit{
       dynamicTyping: true,
       skipEmptyLines: 'greedy',
       worker: true,
-      complete: (result,file) => {
+      complete: (result) => {
         this.csvData = result.data;
         this.router.navigate(["/chart"], {state: {data: this.csvData}});
       }
